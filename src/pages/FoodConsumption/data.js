@@ -2,18 +2,9 @@ export const dataPanganHewan = (dataPangan = []) => {
 
     const periode = dataPangan.map((item) => (item.day))
     const data = [...new Set(periode)]
-    const jumlah = data.sort((a, b) => a - b);
-    // console.log(jumlah);
+    const jumlah = data.sort((a, b) => (a - b));
+    const dataMonth = jumlah.map((item) => (`${item}/3`));
 
-    // const period = dataPangan.map((item) => (item.meat))
-    // const coba = [...new Set(period)]
-    // console.log(coba);
-
-    const month = dataPangan.filter((item, index) => (item.month && index <= 30))
-    // const monthdata = dataPangan.map((item) => (item.month))
-    // const SINGA = month.map((item) => ({ meat: item.meat, day: item.day }))
-    const dataMonth = month.map((item) => (item.month));
-    console.log(dataMonth);
 
     const filterBuaya = dataPangan.filter(item => item.animal === "BUAYA" && item.day);
     const filterMacan = dataPangan.filter(item => item.animal === "MACAN" && item.day);
@@ -28,16 +19,16 @@ export const dataPanganHewan = (dataPangan = []) => {
         chart: {
             type: 'column',
             renderTo: 'container',
-            // inverted: true,
             zoomType: "xy"
         },
         title: {
-            text: 'Test Results'
+            // text: 'Test Results'
         },
-        xAxis: {
-            categories: [...jumlah],
-            max: 31
-        },
+        xAxis: [
+            {
+                categories: [...dataMonth],
+                max: 14,
+            }],
         yAxis: {
             min: 0,
             max: 150,
@@ -46,7 +37,7 @@ export const dataPanganHewan = (dataPangan = []) => {
             }
         },
         tooltip: {
-            pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b><br/>',
+            pointFormat: '<span style="color:{series.color}">{series.name} </span>: <b>{point.y}</b><br/>',
             shared: true
         },
         plotOptions: {
@@ -65,29 +56,29 @@ export const dataPanganHewan = (dataPangan = []) => {
     if (dataPangan.length !== 0) {
         chartOptions.series = [{
             name: 'BERUANG',
-            data: [...filterBeruang.map((item) => Math.floor(item.meat))]
+            data: [...filterBeruang.map((item) => Math.floor(item.meat.toFixed(0)))]
         }, {
             name: 'SERIGALA',
-            data: [...filterSerigala.map((item) => Math.floor(item.meat))]
+            data: [...filterSerigala.map((item) => Math.floor(item.meat.toFixed(0)))]
         }, {
             name: 'BUAYA',
-            data: [...filterBuaya.map((item) => Math.floor(item.meat))]
+            data: [...filterBuaya.map((item) => Math.floor(item.meat.toFixed(0)))]
         },
         {
             name: 'SINGA',
-            data: [...filterSinga.map((item) => Math.floor(item.meat))]
+            data: [...filterSinga.map((item) => Math.floor(item.meat.toFixed(0)))]
         },
         {
             name: 'MACAN',
-            data: [...filterMacan.map((item) => Math.floor(item.meat))]
+            data: [...filterMacan.map((item) => Math.floor(item.meat.toFixed(0)))]
         },
         {
             name: 'ULAR',
-            data: [...filterUlar.map((item) => Math.floor(item.meat))]
+            data: [...filterUlar.map((item) => Math.floor(item.meat.toFixed(0)))]
         },
         {
             name: 'LAINNYA',
-            data: [...filterLainnya.map((item) => Math.floor(item.meat))]
+            data: [...filterLainnya.map((item) => Math.floor(item.meat.toFixed(0)))]
         }]
     }
 

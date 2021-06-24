@@ -1,14 +1,23 @@
 import React, { useEffect, useState } from 'react'
 import { Grid, Card, CardContent, Typography } from '@material-ui/core'
-import Highcharts from 'highcharts'
+import Highcharts from 'highcharts/highstock'
 import HighchartsReact from 'highcharts-react-official'
-
-//data
 import { dataPanganHewan } from './data'
 
 
+// Load Highcharts modules
+
+// require('highcharts/indicators/indicators')(Highcharts)
+// require('highcharts/indicators/pivot-points')(Highcharts)
+// require('highcharts/indicators/macd')(Highcharts)
+// require('highcharts/modules/exporting')(Highcharts)
+// require('highcharts/modules/map')(Highcharts)
+// 
+//data
+
+
 function FoodConsumption() {
-  const [animal, setAnimal] = React.useState('');
+  // const [animal, setAnimal] = React.useState('');
   const [dataPangan, setDataPangan] = useState([])
 
 
@@ -30,7 +39,8 @@ function FoodConsumption() {
             </Typography>
             <HighchartsReact
               highcharts={Highcharts}
-              options={dataPanganHewan(dataPangan, animal)}
+              // constructorType={'stockChart'}
+              options={dataPanganHewan(dataPangan)}
             />
           </CardContent>
         </Card>
